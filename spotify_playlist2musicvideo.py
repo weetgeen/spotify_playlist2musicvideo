@@ -7,18 +7,17 @@ from random import randint
 from time import sleep
 from json.decoder import JSONDecodeError
 
-#Een test comment
-
+#Test comment
 
 #Spotify developer settings; create a free account on developer.spotify.com
-os.environ["SPOTIPY_CLIENT_ID"]     = '919bc08b499a419d864bbf1574fb07cf'
-os.environ["SPOTIPY_CLIENT_SECRET"] = 'c393f03e11a441c9865b9111434e6c01'
-os.environ["SPOTIPY_REDIRECT_URI"]  = 'https://hp-iot.nl/index.php'
-username = 'weetgeen'  #spotify username
+os.environ["SPOTIPY_CLIENT_ID"]     = ''
+os.environ["SPOTIPY_CLIENT_SECRET"] = ''
+os.environ["SPOTIPY_REDIRECT_URI"]  = ''
+username = ''  #spotify username
 
 
 #Root of filepath in which folders are created to store playlists video's
-basefilepath = "D:\Projects\Python\spotifyMusicVideo\VIDEOS\\"
+basefilepath = ""
 
 scope    = 'user-library-read'
 
