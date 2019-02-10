@@ -7,7 +7,7 @@ from random import randint
 from time import sleep
 from json.decoder import JSONDecodeError
 
-#Test comment
+#Test commen
 
 #Spotify developer settings; create a free account on developer.spotify.com
 os.environ["SPOTIPY_CLIENT_ID"]     = ''
