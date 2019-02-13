@@ -22,7 +22,7 @@ scope    = 'user-library-read'
 
 songs = [] #declare empty list to store songs in
 
-def show_tracks(results, playlistname,basefilepath):
+def show_tracks(results, playlistname):
     for i, item in enumerate(results['items']):
         track = item['track']
         songs.append(track['artists'][0]['name'] +' '+ track['name'])
@@ -45,10 +45,10 @@ def download_all_playlist():
 				print('  total tracks', playlist['tracks']['total'])
 				results = sp.user_playlist(username, playlist['id'], fields="tracks,next")
 				tracks = results['tracks']
-				show_tracks(tracks, playlist['name'],basefilepath)
+				show_tracks(tracks, playlist['name'])
 				while tracks['next']:
 					tracks = sp.next(tracks)
-					show_tracks(tracks, playlist['name'],basefilepath)
+					show_tracks(tracks, playlist['name'])
 
 		download()
                 
@@ -64,10 +64,10 @@ def download_single_playlist(playlist_id, playlistname):
     #Create new folder of not existing
     youtubeDownload.create_playlist_folder(playlistname, basefilepath)
     
-    show_tracks(tracks, playlistname, basefilepath)
+    show_tracks(tracks, playlistname)
     while tracks['next']:
 	    tracks = sp.next(tracks)
-	    show_tracks(tracks, playlistname, basefilepath)
+	    show_tracks(tracks, playlistname)
 
     download()
 
