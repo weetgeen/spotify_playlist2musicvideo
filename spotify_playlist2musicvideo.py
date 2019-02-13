@@ -86,14 +86,16 @@ except (AttributeError, JSONDecodeError):
     token = util.prompt_for_user_token(username)
 
 
-print('Provide playlist ID or type ALL to download all your playlists')
-playlist_id = input()  #TODO let users input spotify URI
+print('Provide playlist URI or type ALL to download all your playlists')
+playlist_id = input()
 
 if(playlist_id == 'ALL'):
 	print('Downloading all playlists')
 	download_all_playlist()
 else:
+        playlist_id = playlistURI.split("playlist:",1)[1]    #Takes the playlist number of the spotifyURI
 	#TODO verify user input
 	print('Playlist name')
-	playlistname = input() #TODO get playlist name from spotify
+	playlistURI = input() #TODO get playlist name from spotify
+	
 	download_single_playlist(playlist_id, playlistname)	
