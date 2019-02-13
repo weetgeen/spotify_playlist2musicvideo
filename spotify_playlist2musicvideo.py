@@ -11,7 +11,7 @@ from json.decoder import JSONDecodeError
 os.environ["SPOTIPY_CLIENT_ID"]     = ''
 os.environ["SPOTIPY_CLIENT_SECRET"] = ''
 os.environ["SPOTIPY_REDIRECT_URI"]  = ''
-username = ''  #spotify username
+username = '' #spotify username
 
 
 #Root of filepath in which folders are created to store playlists video's
@@ -20,15 +20,15 @@ basefilepath = ""
 scope    = 'user-library-read'
 
 
-
-
+songs = [] #declare empty list to store songs in
 
 def show_tracks(results, playlistname,basefilepath):
     for i, item in enumerate(results['items']):
         track = item['track']
+        songs.append(track['artists'][0]['name'] +' '+ track['name'])
         print("   %d %32.32s %s" % (i, track['artists'][0]['name'], track['name']))
 
-        youtubeDownload.find_video(track['artists'][0]['name'] + ' ' + track['name'], playlistname, basefilepath)      
+
 
 def download_all_playlist():    
 	if token:
@@ -49,6 +49,8 @@ def download_all_playlist():
 				while tracks['next']:
 					tracks = sp.next(tracks)
 					show_tracks(tracks, playlist['name'],basefilepath)
+
+		download()
                 
 	else:
 		print("Can't get token for", username)
@@ -67,8 +69,14 @@ def download_single_playlist(playlist_id, playlistname):
 	    tracks = sp.next(tracks)
 	    show_tracks(tracks, playlistname, basefilepath)
 
+    download()
 
 
+#TODO add progress bar
+def download():
+    for song in songs:
+        youtubeDownload.find_video(song , playlistname, basefilepath)
+        
 
 #TODO Access token expires for long downloads
 try:
